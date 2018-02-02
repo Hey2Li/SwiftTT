@@ -47,6 +47,7 @@ extension Category {
         provider.request(.category) { (result) in
             switch result {
             case let .success(moyaResponse):
+                print(moyaResponse)
                 let json =  try! moyaResponse.mapJSON() as! [String:Any]
                 if let jsonResponse = CategoryIndexResponse(JSON: json) {
                     completion(jsonResponse.categories)

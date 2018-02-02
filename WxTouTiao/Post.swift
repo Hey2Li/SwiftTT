@@ -94,8 +94,11 @@ extension Post {
         provider.request(.submitComment(postId: postId, name: name, email: email, content: content)) { (result) in
             switch result {
             case let .success(moyaResponse):
+                print(moyaResponse)
+                print(result)
                 let json =  try! moyaResponse.mapJSON() as! [String:Any]
                 if let jsonResponse = SubmitResponse(JSON: json) {
+                    print(jsonResponse.status)
                     if jsonResponse.status == "ok" {
                         completion(true)
                     }else{

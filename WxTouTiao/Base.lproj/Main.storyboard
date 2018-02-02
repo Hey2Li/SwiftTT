@@ -134,17 +134,40 @@
                                                 <rect key="frame" x="0.0" y="9.5" width="15" height="15"/>
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="这是里评论区" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="me9-qw-LNm">
-                                                <rect key="frame" x="15" y="2" width="241" height="30"/>
+                                                <rect key="frame" x="15" y="2" width="266" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="editBegin:" destination="L91-Wj-NX5" eventType="editingDidBegin" id="lIE-iw-Unw"/>
+                                                    <action selector="editDone:" destination="L91-Wj-NX5" eventType="editingDidEnd" id="0Dh-e8-e98"/>
+                                                    <outlet property="delegate" destination="L91-Wj-NX5" id="Pno-Pw-UTR"/>
+                                                </connections>
                                             </textField>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bluebar_unfold" translatesAutoresizingMaskIntoConstraints="NO" id="iYM-Pa-trR">
-                                                <rect key="frame" x="256" y="0.0" width="60" height="34"/>
-                                            </imageView>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dnn-De-yyv">
-                                                <rect key="frame" x="316" y="1.5" width="51" height="31"/>
-                                            </switch>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEL-KM-eAo">
+                                                <rect key="frame" x="281" y="0.0" width="34" height="34"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="34" id="frn-Rb-rLc"/>
+                                                    <constraint firstAttribute="width" constant="34" id="ipF-Az-sAh"/>
+                                                </constraints>
+                                                <state key="normal" title="Button" image="bluebar_unfold"/>
+                                                <connections>
+                                                    <action selector="clickComment:" destination="L91-Wj-NX5" eventType="touchUpInside" id="tYk-PM-DRX"/>
+                                                </connections>
+                                            </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SBj-ns-Rxd" customClass="LLSwitch">
+                                                <rect key="frame" x="315" y="5" width="50" height="24"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="3fJ-AG-vjf"/>
+                                                    <constraint firstAttribute="height" constant="24" id="iwH-49-jad"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="animationDuration">
+                                                        <real key="value" value="0.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -162,7 +185,6 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tg6-cE-KUv" customClass="LeoDanmakuView">
                                 <rect key="frame" x="0.0" y="20" width="375" height="150"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Tg6-cE-KUv" secondAttribute="height" multiplier="2.5" id="rbi-dW-XOH"/>
                                 </constraints>
@@ -180,12 +202,14 @@
                         <viewLayoutGuide key="safeArea" id="Wjg-ww-rMj"/>
                     </view>
                     <connections>
+                        <outlet property="commentBtn" destination="kEL-KM-eAo" id="rTS-9s-pEa"/>
+                        <outlet property="danmuSwitch" destination="SBj-ns-Rxd" id="9CM-CL-gaZ"/>
                         <outlet property="danmuView" destination="Tg6-cE-KUv" id="Hhk-r1-JKH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="56N-Eh-PzB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1671.2" y="85.907046476761622"/>
+            <point key="canvasLocation" x="-1799" y="68"/>
         </scene>
         <!--微信头条-->
         <scene sceneID="tne-QT-ifu">

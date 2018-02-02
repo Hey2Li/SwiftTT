@@ -15,20 +15,27 @@ class NewsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getData()
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableViewAutomaticDimension
+    
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(getData), for: .valueChanged)
+        NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NotificationHelper.updateList, object: nil)
+    }
+    @objc func getData() {
         Post.request(id: id) { (posts) in
             if let posts = posts {
                 OperationQueue.main.addOperation {
                     self.newsList = posts
                     self.tableView.reloadData()
+                    self.refreshControl?.endRefreshing()
                 }
             }else {
                 print("网络错误")
             }
         }
-        tableView.estimatedRowHeight = 100
-        tableView.rowHeight = UITableViewAutomaticDimension
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -45,6 +52,7 @@ class NewsTableViewController: UITableViewController {
         let news = newsList[indexPath.row]
         cell.titleLabel.text = news.title
         cell.commentLabel.text = "评论：\(news.comment_count!)"
+        cell.selectionStyle = .none
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -52,7 +60,7 @@ class NewsTableViewController: UITableViewController {
         
         let detailVC =  storyboard?.instantiateViewController(withIdentifier: "SB_NEWS_DETAIL") as! DetailViewController
         detailVC.title = news.title
-       detailVC.post = news
+        detailVC.post = news
         parentNavi?.pushViewController(detailVC, animated: true)
     }
     /*

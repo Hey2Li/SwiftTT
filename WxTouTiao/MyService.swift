@@ -16,7 +16,9 @@ enum MyService {
 }
 extension MyService: TargetType {
     var baseURL: URL {
-        let baseUrl = "http://localhost:8888/wordpress/api"
+        let baseUrl = "http://192.168.2.1:8888/wordpress/api"
+//        let baseUrl = "http://localhost:8888/wordpress/api"
+
         return URL(string: baseUrl)!
     }
     
@@ -25,9 +27,9 @@ extension MyService: TargetType {
             case .category:
                 return "/get_category_index"
         case .showCateNewList:
-            return "get_category_posts"
+            return "/get_category_posts"
         case .submitComment:
-            return "/respond/submit_comment"
+            return "/respond/submit_comment/"
         }
     }
     
@@ -56,7 +58,7 @@ extension MyService: TargetType {
         case .showCateNewList(let id):
             return .requestParameters(parameters: ["id": id], encoding: URLEncoding.default)
         case .submitComment(let postId, let name, let email, let content):
-            return .requestParameters(parameters: ["postId":postId, "name":name, "email":email, "content":content], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["post_id":postId, "name":name, "email":email, "content":content], encoding: URLEncoding.default)
         }
     }
     

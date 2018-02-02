@@ -11,4 +11,7 @@ target 'WxTouTiao' do
   pod 'PageMenu'
   pod 'IQKeyboardManager' #iOS8 and later
   pod 'LeoDanmakuKit'
+  pod 'LLSwitch'
+  pod 'WZLBadge'
+  
 end
