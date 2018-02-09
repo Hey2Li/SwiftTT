@@ -116,7 +116,7 @@ class DetailViewController: UIViewController , LLSwitchDelegate{
         </html>
         """
         webView.loadHTMLString(html, baseURL: nil)
-    }
+     }
     func doJavaScriptFunction() {
         let js1 = """
                     $(document).ready(function() {
@@ -138,7 +138,6 @@ class DetailViewController: UIViewController , LLSwitchDelegate{
             result += paragaph
         }
         return result
-        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
